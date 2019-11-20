@@ -13,7 +13,7 @@ int	main(void)
 	b = 'Z';
 	c = 2.2;
 	printf("Original:\n");
-	printf_charcount = printf("int is <%.5d>, char is <%c>, float is <%f>. End.\n", a, b, c);
+	printf_charcount = printf("int is <%.5d>, char is <%c>, float is <%.1f>. End.\n", a, b, c);
 	printf("printf return value: <%d>\n", printf_charcount);
 	printf("\n");
 	printf("FT:\n");
