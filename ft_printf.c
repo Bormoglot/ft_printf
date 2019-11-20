@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 17:48:44 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/20 17:15:22 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/20 21:00:33 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,80 +20,16 @@
 ** 2.
 */
 
-/*
-** What if the precision number is longer than an int?
-*/
-
-void	parse_precision(t_printf *storage)
-{
-	char	*ptr;
-
-	if (*storage->format == '.')
-	{
-		storage->is_precision = true;
-		storage->precision = 0;
-		++(storage->format);
-		ptr = storage->format;
-		if (ft_isdigit(*ptr))
-			storage->precision = ft_atoi(ptr);
-		while (ft_isdigit(*storage->format))
-			++(storage->format);
-	}	
-}
-
-/*
-** What if the min_width number is longer than an int?
-*/
-
-void	parse_min_width(t_printf *storage)
-{
-	char	*ptr;
-
-	ptr = storage->format;
-	if (ft_isdigit(*ptr))
-		storage->min_width = ft_atoi(ptr);
-	while (ft_isdigit(*storage->format))
-		++(storage->format);
-}
-
-void	parse_flags(t_printf *storage)
-{
-	while (*storage->format == '#' || *storage->format == '0' || *storage->format == '-'
-	|| *storage->format == ' ' || *storage->format == '+')
-	{
-		if (*storage->format == '#')
-			storage->hash = true;
-		if (*storage->format == '0')
-			storage->zero = true;
-		if (*storage->format == '-')
-		{
-			storage->minus = true;
-			storage->zero = false;
-		}
-		if (*storage->format == ' ')
-			storage->space = true;
-		if (*storage->format == '+')
-		{
-			storage->plus = true;
-			storage->space = false;
-		}
-		++(storage->format);
-	}
-}
-
-void	parse_format(t_printf *storage)
+void	convert(t_printf *storage)
 {
 	char	char_to_print;
-
-	parse_flags(storage);
-	parse_min_width(storage);
-	parse_precision(storage);
-	if (*(storage->format) == '%')
+	
+	if (storage->conv_spec == '%')
 	{
 		ft_putchar('%');
 		++(storage->charcount);
 	}
-	else if (*(storage->format) == 'c')
+	else if (storage->conv_spec == 'c')
 	{
 		char_to_print = (char)va_arg(storage->ap, int);
 		ft_putchar(char_to_print);
@@ -104,6 +40,15 @@ void	parse_format(t_printf *storage)
 		char_to_print = (char)va_arg(storage->ap, int);
 		ft_putstr("Not implemented.");
 	}
+}
+
+void	parse_format(t_printf *storage)
+{
+	parse_flags(storage);
+	parse_min_width(storage);
+	parse_precision(storage);
+	parse_length_mod(storage);
+	parse_conv_spec(storage);
 }
 
 int		ft_printf(char *format, ...)
@@ -119,6 +64,7 @@ int		ft_printf(char *format, ...)
 		{
 			++(storage.format);
 			parse_format(&storage);
+			convert(&storage);
 		}
 		else
 		{
@@ -128,7 +74,7 @@ int		ft_printf(char *format, ...)
 		++storage.format;
 	}
 	va_end(storage.ap);
-	printf("storage->precision is <%d>\n", storage.precision);
+	printf("storage->length_mod is <%d>\n", storage.length_mod);
 	printf("storage->is_precision is <%d>\n", storage.is_precision);
 	return (storage.charcount);
 }

@@ -17,7 +17,7 @@ int	main(void)
 	printf("printf return value: <%d>\n", printf_charcount);
 	printf("\n");
 	printf("FT:\n");
-	ft_printf_charcount = ft_printf("int is <%d>, char is <%#10c>. End.\n", a, b);
+	ft_printf_charcount = ft_printf("int is <%d>, char is <%c>. End.\n", a, b);
 	printf("ft_printf return value: <%d>\n", ft_printf_charcount);
 	return (0);
 }

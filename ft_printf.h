@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:08:17 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/20 15:58:07 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/20 20:59:49 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,26 +28,51 @@
 ** charcount: length of string, the return value of ft_printf
 ** *format: pointer to the format string
 ** ap: pointer to the argument in a variable argument list
-** 
+**
 ** Flag characters: #, 0, -, ' ', +
+** min_width
+** is_precision
+** precision
+** length_mod: 1 for hh, 2 for h, 3 for l, 4 for ll, 5 for L
+** conv_spec
 */
+
+typedef enum		e_lenmods
+{
+	HH = 1,
+	H = 2,
+	EL = 3,
+	ELEL = 4,
+	L = 5
+}					t_lenmods;
 
 typedef struct		s_printf
 {
-	int		charcount;
-	char	*format;
-	va_list	ap;
-	bool	hash;
-	bool	zero;
-	bool	minus;
-	bool	space;
-	bool	plus;
-	int		min_width;
-	bool	is_precision;
-	int		precision;
+	int			charcount;
+	char		*format;
+	va_list		ap;
+	bool		hash;
+	bool		zero;
+	bool		minus;
+	bool		space;
+	bool		plus;
+	int			min_width;
+	bool		is_precision;
+	int			precision;
+	t_lenmods	length_mod;
+	char		conv_spec;
 }					t_printf;
 
-
 int					ft_printf(char *format, ...);
+
+/*
+** Parser functions
+*/
+
+void				parse_conv_spec(t_printf *storage);
+void				parse_length_mod(t_printf *storage);
+void				parse_precision(t_printf *storage);
+void				parse_min_width(t_printf *storage);
+void				parse_flags(t_printf *storage);
 
 #endif
