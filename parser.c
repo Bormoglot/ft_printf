@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/20 20:54:38 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/20 20:57:21 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/20 21:20:08 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	parse_conv_spec(t_printf *storage)
 	
 	ch = *storage->format;
 	if (ch == 'c' || ch == 's' || ch == 'p' || ch == 'd' || ch == 'i' || ch == 'o'
-	|| ch == 'u' || ch == 'x' || ch == 'X' || ch == '%')
+	|| ch == 'u' || ch == 'x' || ch == 'X' || ch == 'f' || ch == '%')
 		storage->conv_spec = ch;
 }
 

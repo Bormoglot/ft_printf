@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:08:17 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/20 20:59:49 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/20 21:20:04 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@
 **
 ** Flag characters: #, 0, -, ' ', +
 ** min_width
-** is_precision
+** is_precision: was there a radix point?
 ** precision
 ** length_mod: 1 for hh, 2 for h, 3 for l, 4 for ll, 5 for L
-** conv_spec
+** conv_spec: conversion specifier (c, s, p, d, i, o, u, x, X, f)
 */
 
 typedef enum		e_lenmods
