@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:08:17 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/19 21:01:01 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/20 15:58:07 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,6 @@ typedef struct		s_printf
 	int		precision;
 }					t_printf;
 
-/*
-** A pointer to the format string in the storage structure
-*/
-# define F_PTR storage->format
 
 int					ft_printf(char *format, ...);
 

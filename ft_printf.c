@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 17:48:44 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/19 21:00:50 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/20 16:13:17 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,43 +24,47 @@ void	parse_precision(t_printf *storage)
 {
 	char	*ptr;
 
-	ptr = F_PTR;
+	ptr = storage->format;
 	
 }
+
+/*
+** What if the min_width digit is longer than an int?
+*/
 
 void	parse_min_width(t_printf *storage)
 {
 	char	*ptr;
 
-	ptr = F_PTR;
-	if (*ptr != '\0' && ft_isdigit(*ptr))
+	ptr = storage->format;
+	if (ft_isdigit(*ptr))
 		storage->min_width = ft_atoi(ptr);
-	while (*F_PTR != '\0' && ft_isdigit(*F_PTR))
-		++F_PTR;
+	while (ft_isdigit(*storage->format))
+		++storage->format;
 }
 
 void	parse_flags(t_printf *storage)
 {
-	while (*F_PTR != '\0' && (*F_PTR == '#' || *F_PTR == '0' || *F_PTR == '-'
-	|| *F_PTR == ' ' || *F_PTR == '+'))
+	while (*storage->format == '#' || *storage->format == '0' || *storage->format == '-'
+	|| *storage->format == ' ' || *storage->format == '+')
 	{
-		if (*F_PTR == '#')
+		if (*storage->format == '#')
 			storage->hash = true;
-		if (*F_PTR == '0')
+		if (*storage->format == '0')
 			storage->zero = true;
-		if (*F_PTR == '-')
+		if (*storage->format == '-')
 		{
 			storage->minus = true;
 			storage->zero = false;
 		}
-		if (*F_PTR == ' ')
+		if (*storage->format == ' ')
 			storage->space = true;
-		if (*F_PTR == '+')
+		if (*storage->format == '+')
 		{
 			storage->plus = true;
 			storage->space = false;
 		}
-		++F_PTR;
+		++storage->format;
 	}
 }
 
