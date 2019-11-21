@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/21 10:42:21 by jbdoogls          #+#    #+#             */
-/*   Updated: 2019/11/21 19:17:07 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/21 21:14:48 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,13 +94,33 @@ int     track_converters(t_printf *storage)
 **  yet not implemented converters - drafts to avoid gcc errors
 */
 
+/*
+** convert_int() currently works with:
+** 	min_width, '-', '+', 
+*/
 
 int     convert_int(t_printf *storage)
 {
-	int	tmp;
+	int		value;
+	char	*str;
+	size_t	len;
 	
-	tmp = va_arg(storage->ap, int);
-	ft_putstr("int converter not implemented.");
+	value = va_arg(storage->ap, int);
+	value < 0 ? (storage->plus = false) : 0;
+	str = ft_itoa(value);
+	if (str)
+	{
+		len = storage->plus ? (ft_strlen(str) + 1) : ft_strlen(str);
+		if (storage->min_width && !storage->minus)
+			print_width_field(len, storage->min_width, ' ');
+		if (storage->plus)
+			ft_putchar('+');
+		ft_putstr(str);
+		if (storage->min_width && storage->minus)
+			print_width_field(len, storage->min_width, ' ');
+		storage->charcount += storage->min_width ? storage->min_width : len;
+		return (1);
+	}
 	return (0);
 }
 

@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 17:48:44 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/21 18:51:32 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/21 20:20:30 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,7 @@
 
 /*
 ** TODO
-** 1.	Write a function that resets to zero all the fields in the structure (except
-** 		`charcount`, `ap` and `format`) before the next `%`.
+** 1.
 **
 ** 2.
 */
@@ -43,7 +42,7 @@ void	convert(t_printf *storage)
 	}
 	else
 		if (!(track_converters(storage)))
-			ft_putstr("track_converters() error");
+			ft_putstr(" track_converters() error ");
 }
 
 void	parse_format(t_printf *storage)
@@ -79,7 +78,7 @@ int		ft_printf(char *format, ...)
 		++storage.format;
 	}
 	va_end(storage.ap);
-	printf("storage->length_mod is <%d>\n", storage.length_mod);
-	printf("storage->is_precision is <%d>\n", storage.is_precision);
+	//printf("storage->length_mod is <%d>\n", storage.length_mod);
+	//printf("storage->is_precision is <%d>\n", storage.is_precision);
 	return (storage.charcount);
 }

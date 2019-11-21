@@ -5,19 +5,19 @@ int	main(void)
 {
 	int		a;
 	char	b;
-	float	c;
+	//float	c;
 	int		printf_charcount;
 	int		ft_printf_charcount;
 
-	a = 123;
+	a = 3;
 	b = 'Z';
-	c = 2.2;
+	//c = 2.2;
 	printf("Original:\n");
-	printf_charcount = printf("int is <%.5d>, char is <%c>, float is <%.1f>. End.\n", a, b, c);
+	printf_charcount = printf("int is <% 3d>, char is <%-20c>. End.\n", a, b);
 	printf("printf return value: <%d>\n", printf_charcount);
 	printf("\n");
 	printf("FT:\n");
-	ft_printf_charcount = ft_printf("int is <%d>, char is <%c>. End.\n", a, b);
+	ft_printf_charcount = ft_printf("int is <%d>, char is <%-20c>. End.\n", a, b);
 	printf("ft_printf return value: <%d>\n", ft_printf_charcount);
 	return (0);
 }
