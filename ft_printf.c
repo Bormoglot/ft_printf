@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 17:48:44 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/21 17:47:39 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/21 18:51:32 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,20 @@
 **
 ** 2.
 */
+
+void	reset_fields(t_printf *storage)
+{
+	storage->hash = false;
+	storage->zero = false;
+	storage->minus = false;
+	storage->space = false;
+	storage->plus = false;
+	storage->min_width = 0;
+	storage->is_precision = false;
+	storage->precision = 0;
+	storage->length_mod = 0;
+	storage->conv_spec = 0;
+}
 
 void	convert(t_printf *storage)
 {	
@@ -55,6 +69,7 @@ int		ft_printf(char *format, ...)
 			++(storage.format);
 			parse_format(&storage);
 			convert(&storage);
+			reset_fields(&storage);
 		}
 		else
 		{
