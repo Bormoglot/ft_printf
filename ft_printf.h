@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/13 19:08:17 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/20 21:20:04 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/21 17:47:00 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,5 +74,28 @@ void				parse_length_mod(t_printf *storage);
 void				parse_precision(t_printf *storage);
 void				parse_min_width(t_printf *storage);
 void				parse_flags(t_printf *storage);
+
+/*
+**	Converters functions
+*/
+
+int     track_converters(t_printf *storage);
+
+int		convert_int(t_printf *storage);
+int		convert_unsigned_int(t_printf *storage);
+int		convert_unsigned_octal(t_printf *storage);
+int		convert_hexa(t_printf *storage);
+int		convert_float(t_printf *storage);
+int		convert_string(t_printf *storage);
+int		convert_address(t_printf *storage);
+
+int		convert_char(t_printf *storage);
+int     convert_wchar(t_printf *storage);
+
+/*
+**	Additional functions
+*/
+
+void    print_width_field(int arg_len, int width, char sym);
 
 #endif

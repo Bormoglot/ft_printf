@@ -6,7 +6,7 @@
 /*   By: jlavona <jlavona@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/11/18 17:48:44 by jlavona           #+#    #+#             */
-/*   Updated: 2019/11/20 21:00:33 by jlavona          ###   ########.fr       */
+/*   Updated: 2019/11/21 17:47:39 by jlavona          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,25 +21,15 @@
 */
 
 void	convert(t_printf *storage)
-{
-	char	char_to_print;
-	
+{	
 	if (storage->conv_spec == '%')
 	{
 		ft_putchar('%');
 		++(storage->charcount);
 	}
-	else if (storage->conv_spec == 'c')
-	{
-		char_to_print = (char)va_arg(storage->ap, int);
-		ft_putchar(char_to_print);
-		++(storage->charcount);
-	}
 	else
-	{
-		char_to_print = (char)va_arg(storage->ap, int);
-		ft_putstr("Not implemented.");
-	}
+		if (!(track_converters(storage)))
+			ft_putstr("track_converters() error");
 }
 
 void	parse_format(t_printf *storage)
